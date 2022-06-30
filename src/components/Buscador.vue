@@ -1,0 +1,29 @@
+<template>
+  
+  <input 
+    type="text" 
+    placeholder="Ingrese país" 
+    class="form-control my-3"
+    v-model="texto"
+    @keyup="procesarBusqueda"
+    >
+
+</template>
+
+<script>
+import {ref} from 'vue';
+import { useStore } from 'vuex';
+
+export default {
+    setup(){
+        const texto = ref('');
+        const store = useStore();
+
+        const procesarBusqueda = () => {
+            store.dispatch('filtroNombre', texto.value);
+        }
+
+        return {texto,procesarBusqueda}
+    }
+}
+</script>
